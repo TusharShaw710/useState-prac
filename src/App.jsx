@@ -9,12 +9,13 @@ const App = () => {
   const [role, setrole] = useState('');
   const [desc, setdesc] = useState('');
 
-  const [allArr, setallArr] = useState([]);
-
+  const [allArr, setallArr] = useState(JSON.parse(localStorage.getItem("all-arr")));
+  
   let afterSubmit=(e)=>{
       e.preventDefault();
       let newArr=[...allArr,{name,imageUrl,role,desc}];
       setallArr(newArr);
+      localStorage.setItem("all-arr",JSON.stringify(newArr));
 
       setname('');
       setdesc('');
@@ -26,6 +27,7 @@ const App = () => {
     let newArr=[...allArr];
     newArr.splice(idx,1);
     setallArr(newArr);
+    localStorage.setItem("all-arr",JSON.stringify(newArr));
   }
   return (
     <>
